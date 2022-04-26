@@ -1,0 +1,61 @@
+﻿@model IEnumerable<HealthVet.Models.AppointmentsViewModel>
+
+<p>
+    <a class="btn btn-success text-center" asp-action="NewAppointment">Agendar Cita</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.datetime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.category_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pet_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fullbreed)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datetime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.category_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pet_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fullbreed)
+            </td>
+            <td>
+                @Html.ActionLink("Cambiar Fecha", "ChangeAppointment", new {appointmentId=@item.id}) 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a class="btn btn-primary text-center" asp-controller="Users" asp-action="Index">Regresar</a>
+</div>

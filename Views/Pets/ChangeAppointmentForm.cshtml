@@ -1,0 +1,56 @@
+﻿@model HealthVet.Models.AppointmentsModel
+
+@{
+    var error = TempData["Booked"] as string;
+}
+
+<h4>Cambiar fecha de cita @Model.id</h4>
+<hr />
+@if (!string.IsNullOrEmpty(error))
+{
+    <h2 class="alert alert-dismissible alert-danger p-2">@error</h2>
+}
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ProcessUpdateAppointment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="id" class="control-label" hidden></label>
+                <input asp-for="id" class="form-control hidden" />
+                <span asp-validation-for="id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="datetime" class="control-label"></label>
+                 <input type="text" name="datetime" id="datetime" class="form-control mb-1" placeholder="Click para Elegir Nueva Fecha y Hora"/>
+                <span asp-validation-for="datetime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary text-center" asp-action="MyAppointments">Regresar</a>
+</div>
+
+@section Scripts {
+
+      <script>
+  
+        $("#datetime").datetimepicker({
+        formatDate: 'd-m-y',
+        minDate: 0,
+        defaultTime:'08:00',
+        allowBlank: false,
+        disabledWeekDays: [0,6],
+        allowTimes:[
+            '8:00', '8:30', '9:00','9:30', '10:00', '10:30', '11:00', '11:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00' , '16:30'
+        ]
+        });
+    </script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

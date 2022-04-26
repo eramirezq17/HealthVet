@@ -1,0 +1,36 @@
+﻿@model HealthVet.Models.PetsModel
+
+<h4>Agregar Mascota</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ProcessAddPet">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="age" class="control-label"></label>
+                <input asp-for="age" class="form-control" />
+                <span asp-validation-for="age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <p class="">Raza</p>
+          @Html.DropDownList("breed_id", ViewBag.BreedsList as SelectList, "Seleccione la raza", new {@class = "form-control mb-3"})
+          </div>  
+            <div class="form-group">
+                <input type="submit" value="Agregar" class="btn btn-primary mb-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary text-center" asp-action="MyPets">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

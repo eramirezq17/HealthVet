@@ -1,0 +1,42 @@
+﻿@{
+    var returnUrl = ViewData["ReturnUrl"] as string;
+    var error = TempData["Error"] as string;
+}
+
+<h1>Login</h1>
+@if (!string.IsNullOrEmpty(error))
+{
+    <h2 class="alert alert-dismissible alert-danger p-2">@error</h2>
+}
+<hr />
+<div class="row">
+    <div class="col-6">
+
+        <div class="card">
+            <div class="card-header">
+                <h5>Por favor ingresar credenciales</h5>
+            </div>
+            <div class="card-body">
+                  <form action="/users/login?ReturnUrl=@System.Net.WebUtility.UrlEncode(returnUrl)" method="post">
+            <div class="mb-3">
+                <label class="form-label">Correo Electrónico (email)</label>
+                <input name="email" type="text" class="form-control" />
+            </div>
+             <div class="mb-3">
+                <label class="form-label">Contraseña</label>
+                <input name="password" type="password" class="form-control"/>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Login" class="btn btn-success mb-3" />
+            </div>
+        </form>
+            </div>
+            <div class=card-footer>
+
+            </div>
+        </div>
+
+
+      
+    </div>
+</div>

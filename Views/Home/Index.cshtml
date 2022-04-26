@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Health Vet";
+}
+
+<div class="jumbotron">
+  <h1 class="display-4">Bienvenido a Health Vet!</h1>
+  <p class="lead">Cuidamos de sus consentidos</p>
+  <hr class="my-4">
+</div>
+
+  @if(!User.Identity.IsAuthenticated)
+ {
+<a class="btn btn-primary btn-lg" href="/Users/Login" role="button">Iniciar Sesión</a>
+}
